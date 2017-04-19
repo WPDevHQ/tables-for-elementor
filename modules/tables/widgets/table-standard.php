@@ -54,6 +54,20 @@ class Table_Standard extends Widget_Base {
 				'default' => __( 'Elementor', 'elementor-tables' ),
 			]
 		);
+		
+		$this->add_control(
+			'title1_margin',
+			[
+				'label' => __( 'Title Margins', 'elementor' ),
+				'description' => __( 'Use this option to adjust the margins if you have removed the CTA button.', 'vividi' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} #el-tables .table-cell h3.column-table-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'separator' => 'before',
+			]
+		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
@@ -83,14 +97,43 @@ class Table_Standard extends Widget_Base {
 		);
 		
 		$this->add_control(
+			'enable_button1',
+			[
+				'label' => __( 'Enable CTA Button 1', 'vividi' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => 'yes',
+				'prefix_class' => '',
+				'label_on' => 'Yes',
+				'label_off' => 'No',
+				'return_value' => 'yes',
+				'description' => __( 'You can show/hide the CTA button for this option.', 'vividi' ),				
+			]
+		);
+		
+		$this->add_control(
 			'button1_cta',
 			[
 				'label' => __( 'CTA Text', 'elementor-tables' ),
 				'type' => Controls_Manager::TEXT,
 				'placeholder' => __( 'Download Now', 'elementor-tables' ),
 				'default' => __( 'Download Now!', 'elementor-tables' ),
+				'condition' => [
+					'enable_button1' => 'yes',
+				],
 			]
-		);		
+		);
+
+		$this->add_control(
+			'btn1_link',
+			[
+				'label' => __( 'Link', 'elementor-tables' ),
+				'type' => Controls_Manager::URL,
+				'placeholder' => 'http://your-link.com',
+				'default' => [
+					'url' => '#',
+				],
+			]
+		);
 		
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
@@ -100,6 +143,9 @@ class Table_Standard extends Widget_Base {
 				'placeholder' => '1px',
 				'default' => '1px',
 				'selector' => '{{WRAPPER}} .table-cell.first-column a.btn',
+				'condition' => [
+					'enable_button1' => 'yes',
+				],
 			]
 		);
 
@@ -112,6 +158,9 @@ class Table_Standard extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .table-cell.first-column a.btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
+				'condition' => [
+					'enable_button1' => 'yes',
+				],
 			]
 		);
 		
@@ -121,6 +170,9 @@ class Table_Standard extends Widget_Base {
 				'name' => 'button1_typography',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .table-cell.first-column a.btn',
+				'condition' => [
+					'enable_button1' => 'yes',
+				],
 			]
 		);
 
@@ -142,6 +194,20 @@ class Table_Standard extends Widget_Base {
 				'default' => __( 'Elementor Pro', 'elementor-tables' ),
 			]
 		);
+		
+		$this->add_control(
+			'title2_margin',
+			[
+				'label' => __( 'Title Margins', 'elementor' ),
+				'description' => __( 'Use this option to adjust the margins if you have removed the CTA button.', 'vividi' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} #el-tables .table-cell h3.column-table-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'separator' => 'before',
+			]
+		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
@@ -153,7 +219,7 @@ class Table_Standard extends Widget_Base {
 		);
 
 		$this->add_control(
-			'title_view',
+			'view',
 			[
 				'label' => __( 'View', 'elementor-tables' ),
 				'type' => Controls_Manager::HIDDEN,
@@ -171,14 +237,47 @@ class Table_Standard extends Widget_Base {
 		);
 		
 		$this->add_control(
+			'enable_button2',
+			[
+				'label' => __( 'Enable CTA Button 2', 'vividi' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => 'yes',
+				'prefix_class' => '',
+				'label_on' => 'Yes',
+				'label_off' => 'No',
+				'return_value' => 'yes',
+				'description' => __( 'You can show/hide the CTA button for this option.', 'vividi' ),
+				
+			]
+		);
+		
+		$this->add_control(
 			'button2_cta',
 			[
 				'label' => __( 'CTA Text', 'elementor-tables' ),
 				'type' => Controls_Manager::TEXT,
 				'placeholder' => __( 'View Details', 'elementor-tables' ),
 				'default' => __( 'View Details!', 'elementor-tables' ),
+				'condition' => [
+					'enable_button2' => 'yes',
+				],
 			]
-		);		
+		);
+
+		$this->add_control(
+			'btn2_link',
+			[
+				'label' => __( 'Link', 'elementor-tables' ),
+				'type' => Controls_Manager::URL,
+				'placeholder' => 'http://your-link.com',
+				'default' => [
+					'url' => '#',
+				],
+				'condition' => [
+					'enable_button2' => 'yes',
+				],
+			]
+		);
 		
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
@@ -188,6 +287,9 @@ class Table_Standard extends Widget_Base {
 				'placeholder' => '2px',
 				'default' => '2px',
 				'selector' => '{{WRAPPER}} .table-cell.second-column a.btn',
+				'condition' => [
+					'enable_button2' => 'yes',
+				],
 			]
 		);
 
@@ -200,6 +302,9 @@ class Table_Standard extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .table-cell.second-column a.btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
+				'condition' => [
+					'enable_button2' => 'yes',
+				],
 			]
 		);
 		
@@ -209,6 +314,9 @@ class Table_Standard extends Widget_Base {
 				'name' => 'button2_typography',
 				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .table-cell.second-column a.btn',
+				'condition' => [
+					'enable_button2' => 'yes',
+				],
 			]
 		);
 
@@ -220,20 +328,7 @@ class Table_Standard extends Widget_Base {
 				'label' => __( 'Features', 'elementor-tables' ),
 			]
 		);
-		
-		$this->add_control(
-			'feature_compare',
-			[
-				'label' => __( 'Icon Or Text', 'vividi' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'icon',
-				'options' => [
-					'icon' => __( 'Icon', 'elementor-tables' ),
-					'text' => __( 'Text', 'elementor-tables' ),
-				],
-			]
-		);
-		
+
 		$this->add_control(
 			'features_list',
 			[
@@ -267,28 +362,28 @@ class Table_Standard extends Widget_Base {
 					],
 					[
 						'name' => 'option1_text',
-						'label' => __( 'Supported or Not: Text', 'elementor-tables' ),
+						'label' => __( 'Option 1 Text', 'elementor-tables' ),
 						'type' => Controls_Manager::TEXT,
 						'label_block' => true,
 						'default' => '',
 					],
 					[
 						'name' => 'option1_icon',
-						'label' => __( 'Supported or Not: Icon', 'elementor-tables' ),
+						'label' => __( 'Option 1 Icon', 'elementor-tables' ),
 						'type' => Controls_Manager::ICON,
 						'label_block' => true,
 						'default' => 'fa fa-check',
 					],
 					[
 						'name' => 'option2_text',
-						'label' => __( 'Supported or Not: Text', 'elementor-tables' ),
+						'label' => __( 'Option 2 Text', 'elementor-tables' ),
 						'type' => Controls_Manager::TEXT,
 						'label_block' => true,
 						'default' => '',
 					],
 					[
 						'name' => 'option2_icon',
-						'label' => __( 'Supported or Not: Icon', 'elementor-tables' ),
+						'label' => __( 'Option 2 Icon', 'elementor-tables' ),
 						'type' => Controls_Manager::ICON,
 						'label_block' => true,
 						'default' => 'fa fa-check',
@@ -353,6 +448,9 @@ class Table_Standard extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .table-cell.first-column a.btn' => 'color: {{VALUE}};',
 				],
+				'condition' => [
+					'enable_button1' => 'yes',
+				],
 			]
 		);
 		
@@ -368,6 +466,9 @@ class Table_Standard extends Widget_Base {
 				'default' => '#ffffff',
 				'selectors' => [
 					'{{WRAPPER}} .table-cell.first-column a.btn:hover' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'enable_button1' => 'yes',
 				],
 			]
 		);
@@ -385,6 +486,9 @@ class Table_Standard extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .table-cell.first-column a.btn' => 'background-color: {{VALUE}};',
 				],
+				'condition' => [
+					'enable_button1' => 'yes',
+				],
 			]
 		);
 		
@@ -401,6 +505,9 @@ class Table_Standard extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .table-cell.first-column a.btn:hover' => 'background-color: {{VALUE}};',
 				],
+				'condition' => [
+					'enable_button1' => 'yes',
+				],
 			]
 		);
 		
@@ -416,6 +523,9 @@ class Table_Standard extends Widget_Base {
 				'default' => '#30305b',
 				'selectors' => [
 					'{{WRAPPER}} .table-cell.first-column a.btn:hover' => 'border-color: {{VALUE}};',
+				],
+				'condition' => [
+					'enable_button1' => 'yes',
 				],
 			]
 		);
@@ -491,6 +601,9 @@ class Table_Standard extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .table-cell.second-column a.btn' => 'color: {{VALUE}};',
 				],
+				'condition' => [
+					'enable_button2' => 'yes',
+				],
 			]
 		);
 		
@@ -506,6 +619,9 @@ class Table_Standard extends Widget_Base {
 				'default' => '#ffffff',
 				'selectors' => [
 					'{{WRAPPER}} .table-cell.second-column a.btn:hover' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'enable_button2' => 'yes',
 				],
 			]
 		);
@@ -523,6 +639,9 @@ class Table_Standard extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .table-cell.second-column a.btn' => 'background-color: {{VALUE}};',
 				],
+				'condition' => [
+					'enable_button2' => 'yes',
+				],
 			]
 		);
 		
@@ -539,6 +658,9 @@ class Table_Standard extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .table-cell.second-column a.btn:hover' => 'background-color: {{VALUE}};',
 				],
+				'condition' => [
+					'enable_button2' => 'yes',
+				],
 			]
 		);
 		
@@ -554,6 +676,9 @@ class Table_Standard extends Widget_Base {
 				'default' => '#85bafc',
 				'selectors' => [
 					'{{WRAPPER}} .table-cell.second-column a.btn:hover' => 'border-color: {{VALUE}};',
+				],
+				'condition' => [
+					'enable_button2' => 'yes',
 				],
 			]
 		);
@@ -617,24 +742,52 @@ class Table_Standard extends Widget_Base {
 		$title1 = $settings['title1'];
 		$title2 = $settings['title2'];
 		
-		$button1 = $settings['button1_cta'];
-		$button2 = $settings['button2_cta'];
+		$features = $settings['features_list'];
+		
+		$btn1_on 	= $settings['enable_button1'];
+		$button1 	= $settings['button1_cta'];
+		$btn1_url 	= $settings['btn1_link']['url'];
+		if ( ! empty( $settings['btn1_link']['is_external'] ) ) {
+			$btn1_target = '_blank';
+		} else {
+			$btn1_target = '_self';
+		}
+		
+		$btn2_on 	= $settings['enable_button2'];
+		$button2 	= $settings['button2_cta'];
+		$btn2_url 	= $settings['btn2_link']['url'];
+		if ( ! empty( $settings['btn2_link']['is_external'] ) ) {
+			$btn2_target = '_blank';
+		} else {
+			$btn2_target = '_self';
+		}
+
 	?>
 	<div id="el-tables" class="table">
 		<div class="table-cell"></div>
+		
 		<div class="table-cell first-column">
 			<h3 class="column-table-title">
 				<?php echo $title1; ?>
 			</h3>
-			<a href="" class="btn"><?php echo $button1; ?></a>
+			<?php if ( $settings['enable_button1'] == 'yes' ) : ?>
+				<a href="<?php echo $btn1_url; ?>" target="<?php echo $btn1_target; ?>" class="btn">
+					<?php echo $button1; ?>
+				</a>
+			<?php endif; ?>
 		</div>
 		<div class="table-cell second-column">
 			<h3 class="column-table-title">
 				<?php echo $title2; ?>
 			</h3>
-			<a href="" class="btn"><?php echo $button2; ?></a>
+			<?php if ( $settings['enable_button2'] == 'yes' ) : ?>
+				<a href="<?php echo $btn2_url; ?>" target="<?php echo $btn2_target; ?>" class="btn">
+					<?php echo $button2; ?>
+				</a>
+			<?php endif; ?>
 		</div>
-		<?php foreach ( $settings['features_list'] as $feature ) : ?>
+		
+		<?php foreach ( $features as $feature ) : ?>
 			<div class="table-cell cell-feature">
 				<?php echo $feature['text']; ?>
 			</div>
@@ -650,7 +803,20 @@ class Table_Standard extends Widget_Base {
 			
 	</div>
 	<?php		
-	}	
+	}
+
+	protected function render_btn1() {
+		$settings = $this->get_settings();
+		
+		
+	}
+	
+	protected function render_btn2() {
+		$settings = $this->get_settings();
+		
+		
+		
+	}
 
 	protected function _content_template() {}
 }
