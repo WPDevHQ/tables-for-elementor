@@ -153,7 +153,7 @@ class Table_Standard extends Widget_Base {
 		);
 
 		$this->add_control(
-			'view',
+			'title_view',
 			[
 				'label' => __( 'View', 'elementor-tables' ),
 				'type' => Controls_Manager::HIDDEN,
